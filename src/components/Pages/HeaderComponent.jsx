@@ -23,7 +23,9 @@ export default function HeaderComponent() {
                               <div className="collapse navbar-collapse">
                                    <ul className="navbar-nav">
                                         { isAuthenticated && <li className="nav-item fs-5"><Link className="nav-link" to={welcome}>Home</Link></li>}
-                                        { isAuthenticated && <li className="nav-item fs-5"><Link className="nav-link" to="/todos">Todos</Link></li>}
+                                        {/* { isAuthenticated && <li className="nav-item fs-5"><Link className="nav-link" to="/******">Movies</Link></li>} */}
+                                        {/* Rating */}
+                                        {/* Award Criteria */}
                                    </ul>
                               </div>
                               <ul className="navbar-nav">

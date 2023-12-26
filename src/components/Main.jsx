@@ -26,9 +26,23 @@ export default function Main(){
                               <Route path='/' element={ <LoginComponent /> } />
                               <Route path='/login' element={ <LoginComponent /> } />
 
-                              
-                         </Routes>
+                              <Route path='/welcome/:username' element={
+                                   <AuthenticatedRoute>
+                                        <WelcomeComponent />
+                                   </AuthenticatedRoute>
+                                   } />
 
+
+
+                              
+                              <Route path='/logout' element={
+                                   <AuthenticatedRoute>
+                                        <LogoutComponent />
+                                   </AuthenticatedRoute>
+                                   } />
+
+                              <Route path='*' element={<ErrorComponent />} />
+                         </Routes>
                     </BrowserRouter>
                </AuthProvider>
                
