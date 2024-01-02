@@ -9,3 +9,25 @@ label, input, button {
      width: 90%;
      height: 40px;
  }
+
+ #tooltip {
+    font-size: 10px;
+ }
+
+ td {
+    cursor: pointer;
+ }
+
+ .rounded {
+    border-radius: 50%;
+ }
+
+ @media only screen and (max-width: 750px) {
+    th {
+        font-size: 14px;
+     }
+    
+     td {
+        font-size: 10px;
+     }
+  }

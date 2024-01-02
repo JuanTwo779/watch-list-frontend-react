@@ -1,7 +1,6 @@
-import { apiWatchlistClient } from "./ApiClient";
+import { apiClient } from "./ApiClient";
+
 
 export const executeJwtAuthenticationService 
-     = (username, password) =>
-          apiWatchlistClient.post(`/authenticate`,
-          {username,password}
-     )
+     = (username, password) => 
+          apiClient.post(`/authenticate`, {  username, password })

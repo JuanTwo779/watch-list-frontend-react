@@ -1,10 +1,10 @@
-import { apiWatchlistClient } from "./ApiClient";
+import { apiClient } from "./ApiClient";
 
 export const retrieveDemoString 
-     = () => apiWatchlistClient.get('/demo')
+     = () => apiClient.get('/demo')
 
 export const retriveDemoBean 
-     = () => apiWatchlistClient.get('/demo-bean')
+     = () => apiClient.get('/demo-bean')
 
 export const retrieveDemoBeanPathVariable
-     = () => apiWatchlistClient.get(`/demo-bean/path-variable/${username}`)
+     = (username) => apiClient.get(`/demo-bean/path-variable/${username}`)

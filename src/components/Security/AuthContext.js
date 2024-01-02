@@ -1,23 +1,25 @@
 import { createContext, useContext, useState } from "react";
 import { executeJwtAuthenticationService } from "../API/AuthenticationApiService";
-import { apiWatchlistClient } from "../API/ApiClient";
+import { apiClient } from "../API/ApiClient";
 
-//1. Create a context
+// 1. Context creation
 export const AuthContext = createContext()
-
-//call const to use authContext
+// 2. useContext hook = call in children to utilise content
 export const useAuth = () => useContext(AuthContext)
 
-//2. Function to allow parent to pass context to children
+// 3. create states and functions in context that will be passed down to children 
 export default function AuthProvider({ children }) {
 
-     //3. Set states
+     //authentication check useState
      const [isAuthenticated, setAuthenticated] = useState(false)
 
+     //username useState
      const [username, setUsername] = useState(null)
 
+     //JWT token useState
      const [token, setToken] = useState(null)
 
+     //function for loggin in
      async function login(username, password) {
           try{
                //call authentication api and get JWT token
@@ -34,9 +36,9 @@ export default function AuthProvider({ children }) {
                     setToken(jwtToken)
 
                     //intercept the each API call with authorisation header using token
-                    apiWatchlistClient.interceptors.request.use(
+                    apiClient.interceptors.request.use(
                          (config) => {
-                              console.log('token interception')
+                              // console.log('token interception')
                               config.headers.Authorization = jwtToken
                               return config
                          }
@@ -53,13 +55,14 @@ export default function AuthProvider({ children }) {
           }
      }
 
+     //logouot functin
      function logout() {
           setAuthenticated(false)
           setToken(null)
           setUsername(null)
      }
 
-     //whenever AuthProvider is called, provide children with context via AuthContext
+     //Calling AuthProvider in jsx enables context to be passed down to children
      return (
           <AuthContext.Provider 
                value={{isAuthenticated, login, logout, username, token}}>
