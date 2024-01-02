@@ -89,7 +89,7 @@ export default function MovieComponent() {
           }
 
           if(values.rating < 0 || values.rating > 100) {
-               errors.rating = "Enter a valid year"
+               errors.rating = "Enter a rating between 0-100"
           }
           
           return errors
