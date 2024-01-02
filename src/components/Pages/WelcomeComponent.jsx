@@ -1,27 +1,38 @@
 import { useState } from "react";
 import { Link, useParams } from "react-router-dom"
-import { retrieveDemoBeanPathVariable } from "../API/DemoApiService";
+// import { retrieveDemoBeanPathVariable } from "../API/DemoApiService";
+import { retrieveRandomMovieApi } from "../API/MovieApiService";
 
 export default function WelcomeComponent(){
 
      //takes the URL parameter passed in
      const {username} = useParams()
 
-     const [message, setMessage] = useState(null)
+     const [message, setMessage] = useState()
 
-     function successfulResponse(response){
-          console.log(response)
-          setMessage(response.data.message)
-     }
+     // function successfulResponse(response){
+     //      console.log(response)
+     //      setMessage(response.data.message)
+     // }
 
-     function errorResponse(error){
-          console.log(error)
-     }
+     // function errorResponse(error){
+     //      console.log(error)
+     // }
 
-     function callDemoRestApi() {
-          retrieveDemoBeanPathVariable(username)
-               .then((response) => successfulResponse(response))
-               .catch((error) => errorResponse(error))
+     // function callDemoRestApi() {
+     //      retrieveDemoBeanPathVariable(username)
+     //           .then((response) => successfulResponse(response))
+     //           .catch((error) => errorResponse(error))
+     //           .finally (() => console.log('cleanup'))
+     // }
+
+     function getRandomMovie(){
+          retrieveRandomMovieApi(username)
+               .then(response =>{
+                    console.log(response.data)
+                    setMessage(response.data.title)
+               })
+               .catch((error) => console.log(error))
                .finally (() => console.log('cleanup'))
      }
 
@@ -33,7 +44,7 @@ export default function WelcomeComponent(){
                     Manage your movies. <Link to="/movies">View here</Link>
                </div>
                <div>
-                    <button className="btn btn-primary m-5" onClick={callDemoRestApi}>
+                    <button className="btn btn-primary m-5" onClick={getRandomMovie}>
                          Pick a random movie
                     </button>
                </div>

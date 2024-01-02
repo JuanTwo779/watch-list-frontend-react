@@ -14,3 +14,6 @@ export const updateMovieApi
 
 export const createMovieApi 
      = (username, movie) => apiClient.post(`users/${username}/movie-list`, movie)
+
+export const retrieveRandomMovieApi
+     = (username) => apiClient.get(`users/${username}/random-movie`)
