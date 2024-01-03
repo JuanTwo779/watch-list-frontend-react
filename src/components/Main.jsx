@@ -82,7 +82,6 @@ export default function Main(){
                     </BrowserRouter>
                </AuthProvider>
                
-               {/* <ListMoviesComponent /> */}
           </div>
      )
 }

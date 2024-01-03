@@ -18,7 +18,6 @@ export default function HeaderComponent() {
                     <div className="row">
 
                          <nav className="navbar navbar-expand-lg">
-                              {/* <a className="navbar-brand ms-2 fs-2 fw-bold text-black" href="#">WatchME</a> */}
 
                               <div className="container-fluid">
                                    <Link className="navbar-brand ms-2 fs-2 fw-bold text-black" to={welcomePath}>WatchMe</Link>
@@ -41,9 +40,6 @@ export default function HeaderComponent() {
                                                        <li className="nav-item fs-5"><Link className="nav-link" to="/rating-info">Ratings</Link></li>
                                                   </OverlayTrigger>
                                              }
-
-                                             {/* {!isAuthenticated && <li className="nav-item fs-5 ml-auto"><Link className="nav-link" to="/login">Login</Link></li>}
-                                             { isAuthenticated && <li className="nav-item fs-5 ml-auto"><Link className="nav-link" to="/logout" onClick={logout}>Logout</Link></li>} */}
                                         </ul>
                                    </div>
 

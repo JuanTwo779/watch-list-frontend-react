@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { Link, useParams } from "react-router-dom"
-// import { retrieveDemoBeanPathVariable } from "../API/DemoApiService";
 import { retrieveRandomMovieApi } from "../API/MovieApiService";
 
 export default function WelcomeComponent(){
@@ -9,22 +8,6 @@ export default function WelcomeComponent(){
      const {username} = useParams()
 
      const [message, setMessage] = useState()
-
-     // function successfulResponse(response){
-     //      console.log(response)
-     //      setMessage(response.data.message)
-     // }
-
-     // function errorResponse(error){
-     //      console.log(error)
-     // }
-
-     // function callDemoRestApi() {
-     //      retrieveDemoBeanPathVariable(username)
-     //           .then((response) => successfulResponse(response))
-     //           .catch((error) => errorResponse(error))
-     //           .finally (() => console.log('cleanup'))
-     // }
 
      function getRandomMovie(){
           retrieveRandomMovieApi(username)
