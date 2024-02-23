@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { retrieveMovieSearchApi } from "../API/TmdbApiService"
 
+import ISO6391 from 'iso-639-1';
 
 export default function SearchComponent(){
 
@@ -12,10 +13,13 @@ export default function SearchComponent(){
      const [year, setYear] = useState('');
 
      const [movies, setMovies] = useState([]);
+     
+     console.log(ISO6391.getAllCodes())
+     console.log(ISO6391.getAllNativeNames())
 
      useEffect(() => {
       console.log(movies)
-     }, [movies])
+    }, [movies])
 
      const handleSearch = async () => {
           try{
