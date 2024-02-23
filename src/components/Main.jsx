@@ -13,6 +13,7 @@ import AwardInfoComponent from './Pages/AwardInfoComponent'
 import RatingInfoComponent from './Pages/RatingInfoComponent'
 import ListAwardsComponent from './Pages/ListAwardsComponent'
 import AwardComponent from './Pages/AwardComponent'
+import SearchComponent from './Pages/SearchComponent'
 
 function AuthenticatedRoute({children}){
      const authContext = useAuth()
@@ -74,6 +75,13 @@ export default function Main(){
                               <Route path='/movie/:id/awards/:awardId' element={
                                    <AuthenticatedRoute>
                                         <AwardComponent />
+                                   </AuthenticatedRoute>
+                              } />
+
+                              {/* Search function */}
+                              <Route path='/search' element={
+                                   <AuthenticatedRoute>
+                                        <SearchComponent />
                                    </AuthenticatedRoute>
                               } />
 
