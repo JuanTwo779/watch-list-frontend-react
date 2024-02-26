@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import { retrieveMovieSearchApi } from "../API/TmdbApiService"
 
 import ISO6391 from 'iso-639-1';
+import SearchCard from "./SearchCard";
 
 export default function SearchComponent(){
 
@@ -14,8 +15,8 @@ export default function SearchComponent(){
 
      const [movies, setMovies] = useState([]);
      
-     console.log(ISO6391.getAllCodes())
-     console.log(ISO6391.getAllNativeNames())
+    //  console.log(ISO6391.getAllCodes())
+    //  console.log(ISO6391.getAllNativeNames())
 
      useEffect(() => {
       console.log(movies)
@@ -70,12 +71,15 @@ export default function SearchComponent(){
               placeholder="Year"
             />
             <button onClick={handleSearch}>Search</button>
-            
-            <ul>
-              {/* {movies.map((movie, index) => (
-                <li key={index}>{movie.title}</li>
-              ))} */}
-            </ul>
+
+            <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center' }}>
+              {movies.map((movie, id) =>{
+                return <SearchCard key={id} {...movie} />
+              })}
+              
+            </div>
+
+
           </div>
         );
 }

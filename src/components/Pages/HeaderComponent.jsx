@@ -40,7 +40,8 @@ export default function HeaderComponent() {
                                                        <li className="nav-item fs-6"><Link className="nav-link" to="/rating-info">Ratings</Link></li>
                                                   </OverlayTrigger>
                                              }
-                                             <li className="nav-item fs-6"><Link className="nav-link" to="/search">Search</Link></li>
+                                             { isAuthenticated && <li className="nav-item fs-6"><Link className="nav-link" to="/search">Search</Link></li>}
+                                             
                                              
                                         </ul>
                                    </div>
