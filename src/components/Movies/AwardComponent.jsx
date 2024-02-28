@@ -69,8 +69,8 @@ export default function AwardComponent() {
                errors.year = "Enter a valid year"
           }
 
-          if(values.description.length < 10) {
-               errors.description = "Enter at least 10 characters"
+          if(values.description.length < 5) {
+               errors.description = "Enter at least 5 characters"
           }
 
           return errors
