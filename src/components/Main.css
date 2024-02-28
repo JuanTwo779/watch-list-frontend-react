@@ -22,8 +22,30 @@ label, input, button {
     border-radius: 50%;
  }
 
- .nav-item {
-   font-size: 10px;
+ .filter-container{
+   display: flex;
+   flex-direction: row;
+   flex-wrap: wrap;
+   justify-content: center;
+ }
+
+ .filter{
+   margin: 0.5rem;
+ }
+
+ .filter-title{
+   margin: 0;
+   text-align: start;
+   margin-left: 0.5rem;
+ }
+
+ .search-results{
+   margin: 2rem;
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: center;
+   border: 1px solid #ccc; 
+   padding: 10px;
  }
 
  @media only screen and (max-width: 750px) {
