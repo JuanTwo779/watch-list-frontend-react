@@ -15,8 +15,7 @@ export default function SearchComponent(){
 
      const [movies, setMovies] = useState([]);
      
-    //  console.log(ISO6391.getAllCodes())
-    //  console.log(ISO6391.getAllNativeNames())
+     console.log(ISO6391.getAllCodes())
 
      useEffect(() => {
       console.log(movies)
@@ -38,6 +37,7 @@ export default function SearchComponent(){
               <div className="filter">
                   <p className="filter-title">Keywords</p>
                   <input
+                      className="filter-input"
                       type="text"
                       value={query}
                       onChange={(e) => setQuery(e.target.value)}
@@ -46,16 +46,23 @@ export default function SearchComponent(){
               </div>
               <div className="filter">
                   <p className="filter-title">Language</p>
-                  <input
-                      type="text"
-                      value={language}
-                      onChange={(e) => setLanguage(e.target.value)}
-                      placeholder=""
-                  />
+                  <select
+                    className="filter-input"
+                    value={language}
+                    onChange={(e) => setLanguage(e.target.value)}
+                  >
+                    <option value="">Select Language</option>
+                    {ISO6391.getAllCodes().map((code) =>(
+                      <option key={code} value={code}>
+                        {ISO6391.getName(code)}
+                      </option>
+                    ))}
+                  </select>
               </div>
               <div className="filter">
                   <p className="filter-title">Release Year</p>
                   <input
+                      className="filter-input"
                       type="text"
                       value={primaryReleaseYear}
                       onChange={(e) => setPrimaryReleaseYear(e.target.value)}
@@ -65,6 +72,7 @@ export default function SearchComponent(){
               <div className="filter">
                   <p className="filter-title">Page</p>
                   <input
+                      className="filter-input"
                       type="number"
                       value={page}
                       onChange={(e) => setPage(parseInt(e.target.value))}
@@ -74,6 +82,7 @@ export default function SearchComponent(){
               <div className="filter">
                   <p className="filter-title">Country</p>
                   <input
+                      className="filter-input"
                       type="text"
                       value={region}
                       onChange={(e) => setRegion(e.target.value)}
@@ -83,6 +92,7 @@ export default function SearchComponent(){
               <div className="filter">
                   <p className="filter-title">Year</p>
                   <input
+                      className="filter-input"
                       type="text"
                       value={year}
                       onChange={(e) => setYear(e.target.value)}
