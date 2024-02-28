@@ -6,7 +6,7 @@ const getPostUrl = (posterPath) =>{
 const SearchCard = ({poster_path, title, overview, release_date}) =>{
 
      return(
-          <div class="card w-25 p-2 m-2">
+          <div class="card p-2 m-2">
                <img class="card-img-top" src={getPostUrl(poster_path)} alt={title}/>
                <div class="card-body">
                     <h5 class="card-title">{title}</h5>

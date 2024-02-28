@@ -18,6 +18,14 @@ label, input, button {
     cursor: pointer;
  }
 
+ .card {
+   width: 20%;
+ }
+
+ .card-text {
+   font-size: 12px;
+ }
+
  .rounded {
     border-radius: 50%;
  }
@@ -46,6 +54,13 @@ label, input, button {
    justify-content: center;
    border: 1px solid #ccc; 
    padding: 10px;
+ }
+
+ @media only screen and (min-width: 1300px) {
+   .card {
+      width: 10%;
+    }
+
  }
 
  @media only screen and (max-width: 750px) {
