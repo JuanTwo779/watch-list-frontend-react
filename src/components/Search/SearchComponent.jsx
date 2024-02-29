@@ -112,7 +112,7 @@ export default function SearchComponent(){
             <span>{page}</span>
 
             <button 
-              disabled={movies === null}
+              disabled={movies.length < 20}
               onClick={() => {
                 if (query) {
                   setPage(page + 1);
