@@ -7,6 +7,7 @@ import SearchCard from "./SearchCard";
 export default function SearchComponent(){
 
      const[query, setQuery] = useState('')
+     const [prevQuery, setPrevQuery] = useState('');
      const [language, setLanguage] = useState('');
      const [primaryReleaseYear, setPrimaryReleaseYear] = useState('');
      const [page, setPage] = useState(1);
@@ -14,25 +15,35 @@ export default function SearchComponent(){
      const [year, setYear] = useState('');
 
      const [movies, setMovies] = useState([]);
-     
-     console.log(ISO6391.getAllCodes())
 
      useEffect(() => {
-      console.log(movies)
-    }, [movies])
+      if (query && query.trim()) {
+        handleSearch();
+      }
+    }, [page])
 
      const handleSearch = async () => {
-          try{
-            const response = await retrieveMovieSearchApi(query, language, primaryReleaseYear, page, region, year)
-            setMovies(response.results)
-          } catch (e){
-            throw e
-          } 
+      if(!query.trim()) {
+        alert('Please enter keywords before searching.')
+        return
+      } else {
+        setPrevQuery(query)
+        if (query !== prevQuery){
+          setPage(1)
+        }
+        try{
+          const response = await retrieveMovieSearchApi(query, language, primaryReleaseYear, page, region, year)
+          setMovies(response.results)
+        } catch (e){
+          throw e
+        } 
+      }
      }
      
      return (
         <div>
           <h1>Movie Search</h1>
+          {/* Filters */}
           <div className="filter-container">
               <div className="filter">
                   <p className="filter-title">Keywords</p>
@@ -40,7 +51,9 @@ export default function SearchComponent(){
                       className="filter-input"
                       type="text"
                       value={query}
-                      onChange={(e) => setQuery(e.target.value)}
+                      onChange={
+                        (e) => setQuery(e.target.value)
+                      }
                       placeholder="E.g. godfather, part"
                   />
               </div>
@@ -66,27 +79,7 @@ export default function SearchComponent(){
                       type="text"
                       value={primaryReleaseYear}
                       onChange={(e) => setPrimaryReleaseYear(e.target.value)}
-                      placeholder="2000"
-                  />
-              </div>
-              <div className="filter">
-                  <p className="filter-title">Page</p>
-                  <input
-                      className="filter-input"
-                      type="number"
-                      value={page}
-                      onChange={(e) => setPage(parseInt(e.target.value))}
-                      placeholder="Page"
-                  />
-              </div>
-              <div className="filter">
-                  <p className="filter-title">Country</p>
-                  <input
-                      className="filter-input"
-                      type="text"
-                      value={region}
-                      onChange={(e) => setRegion(e.target.value)}
-                      placeholder="country code"
+                      placeholder="0000"
                   />
               </div>
               <div className="filter">
@@ -96,18 +89,48 @@ export default function SearchComponent(){
                       type="text"
                       value={year}
                       onChange={(e) => setYear(e.target.value)}
-                      placeholder="####"
+                      placeholder="0000"
                   />
               </div>
           </div>
-          <button onClick={handleSearch}>Search</button>
+
+          {/* Search button */}
+          <button className="btn btn-primary" onClick={handleSearch}>Search</button>
+
+          {/* Pagination */}
+          <div className="pagination">
+            <button 
+              disabled={page === 1} 
+              onClick={() => {
+                if (query) {
+                  setPage(page - 1);
+                }
+              }}>
+                Previous
+            </button>
+
+            <span>{page}</span>
+
+            <button 
+              disabled={movies === null}
+              onClick={() => {
+                if (query) {
+                  setPage(page + 1);
+                }
+              }}>
+                  Next
+            </button>
+          </div>
+
       
+          {/* Search result cards */}
           <div className="search-results rounded">
               {movies.map((movie, id) => {
                   return <SearchCard key={id} {...movie} />
               })}
-      
           </div>
+
+
       </div>
   
         );
