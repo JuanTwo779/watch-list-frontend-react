@@ -4,6 +4,8 @@ import { retrieveMovieSearchApi } from "../API/TmdbApiService"
 import ISO6391 from 'iso-639-1';
 import SearchCard from "./SearchCard";
 
+import './SearchComponent.css';
+
 export default function SearchComponent(){
 
      const[query, setQuery] = useState('')
