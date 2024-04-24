@@ -108,6 +108,10 @@
      .card {
           width: 100%;
      }
+
+     .language-filter, .year-filter, .release-filter{
+          display: none;
+     }
 }
 
 

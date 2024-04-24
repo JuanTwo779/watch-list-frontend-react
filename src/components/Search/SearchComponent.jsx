@@ -8,15 +8,22 @@ import './SearchComponent.css';
 
 export default function SearchComponent(){
 
-     const[query, setQuery] = useState('')
-     const [prevQuery, setPrevQuery] = useState('');
-     const [language, setLanguage] = useState('');
-     const [primaryReleaseYear, setPrimaryReleaseYear] = useState('');
-     const [page, setPage] = useState(1);
-     const [region, setRegion] = useState('');
-     const [year, setYear] = useState('');
+    const[query, setQuery] = useState('')
+    const [prevQuery, setPrevQuery] = useState('');
+    const [language, setLanguage] = useState('');
+    const [primaryReleaseYear, setPrimaryReleaseYear] = useState('');
+    const [page, setPage] = useState(1);
+    const [region, setRegion] = useState('');
+    const [year, setYear] = useState('');
 
-     const [movies, setMovies] = useState([]);
+    const [movies, setMovies] = useState([]);
+
+    function scrollToTop() {
+      window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+      });
+    }
 
      useEffect(() => {
       if (query && query.trim()) {
@@ -59,8 +66,8 @@ export default function SearchComponent(){
                       placeholder="E.g. godfather, part"
                   />
               </div>
-              <div className="filter">
-                  <p className="filter-title">Language</p>
+              <div className="filter language-filter">
+                  <p className="filter-title ">Language</p>
                   <select
                     className="filter-input"
                     value={language}
@@ -74,8 +81,8 @@ export default function SearchComponent(){
                     ))}
                   </select>
               </div>
-              <div className="filter">
-                  <p className="filter-title">Release Year</p>
+              <div className="filter release-filter">
+                  <p className="filter-title ">Release Year</p>
                   <input
                       className="filter-input"
                       type="text"
@@ -84,8 +91,8 @@ export default function SearchComponent(){
                       placeholder="0000"
                   />
               </div>
-              <div className="filter">
-                  <p className="filter-title">Year</p>
+              <div className="filter year-filter">
+                  <p className="filter-title ">Year</p>
                   <input
                       className="filter-input"
                       type="text"
@@ -99,6 +106,15 @@ export default function SearchComponent(){
           {/* Search button */}
           <button className="btn btn-primary" onClick={handleSearch}>Search</button>
 
+
+      
+          {/* Search result cards */}
+          <div className="search-results rounded">
+              {movies.map((movie, id) => {
+                  return <SearchCard key={id} {...movie} />
+              })}
+          </div>
+
           {/* Pagination */}
           <div className="pagination">
             <button 
@@ -106,6 +122,7 @@ export default function SearchComponent(){
               onClick={() => {
                 if (query) {
                   setPage(page - 1);
+                  scrollToTop(); //not functioning
                 }
               }}>
                 Previous
@@ -118,20 +135,12 @@ export default function SearchComponent(){
               onClick={() => {
                 if (query) {
                   setPage(page + 1);
+                  scrollToTop();
                 }
               }}>
                   Next
             </button>
           </div>
-
-      
-          {/* Search result cards */}
-          <div className="search-results rounded">
-              {movies.map((movie, id) => {
-                  return <SearchCard key={id} {...movie} />
-              })}
-          </div>
-
 
       </div>
   
