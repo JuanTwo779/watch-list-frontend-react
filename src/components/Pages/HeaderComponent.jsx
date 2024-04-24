@@ -20,7 +20,7 @@ export default function HeaderComponent() {
                          <nav className="navbar navbar-expand-lg">
 
                               <div className="container-fluid">
-                                   <Link className="navbar-brand ms-2 fs-4 fw-bold text-black" to={welcomePath}>WatchMe</Link>
+                                   <Link className="navbar-brand ms-2 fs-4 fw-bold text-secondary" to={welcomePath}>Watch<span className="text-primary">ME</span></Link>
 
                                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                                         <span class="navbar-toggler-icon"></span>
