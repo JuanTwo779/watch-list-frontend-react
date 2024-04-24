@@ -8,12 +8,14 @@ export default function WelcomeComponent(){
      const {username} = useParams()
 
      const [message, setMessage] = useState()
+     const [date, setDate] = useState();
 
      function getRandomMovie(){
           retrieveRandomMovieApi(username)
                .then(response =>{
                     console.log(response.data)
                     setMessage(response.data.title)
+                    setDate(response.data.year)
                })
                .catch((error) => console.log(error))
                .finally (() => console.log('cleanup'))
@@ -31,8 +33,11 @@ export default function WelcomeComponent(){
                          Pick a random movie
                     </button>
                </div>
-               <div className="text-info">
+               <div className="display-5 text-center text-primary">
                     {message}
+               </div>
+               <div className="lead text-center">
+                    {date}
                </div>
           </div>
      )
