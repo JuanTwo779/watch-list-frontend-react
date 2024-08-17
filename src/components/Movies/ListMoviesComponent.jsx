@@ -128,7 +128,7 @@ export default function ListMoviesComponent(){
                                              <td>{movie.director}</td>
                                              <td>{movie.country}</td>
                                              <td>{movie.rating.toString()}</td>
-                                             <td>{movie.watched.toString()}</td>
+                                             <td>{movie.watched ? '✔️' : ''}</td>
                                         </tr>
                                    )
                               )
