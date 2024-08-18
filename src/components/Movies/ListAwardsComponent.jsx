@@ -41,7 +41,7 @@ export default function ListAwardsComponent(){
                deleteAwardForMovieApi(username, id, selectedAwardId)
                .then(
                     () => {
-                         setMessage(`Movie with id: ${selectedAwardId} deleted successfully` )
+                         setMessage(`Award with id: ${selectedAwardId} deleted successfully` )
                          refreshAwardList()
                     }
                )

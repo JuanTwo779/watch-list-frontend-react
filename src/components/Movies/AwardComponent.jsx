@@ -76,6 +76,15 @@ export default function AwardComponent() {
           return errors
      }
 
+     const generateYears = () => {
+          const years = [];
+          var currentYear = new Date().getFullYear()
+          for (let i = currentYear; i >= 1800; i--) {
+               years.push(i);
+          }
+          return years;
+     };
+
      return (
           <div className="container">
                <h1>Enter Award Details</h1>
@@ -102,7 +111,12 @@ export default function AwardComponent() {
                                    {/* YEAR */}
                                    <fieldset className="form-group">
                                         <label>Year</label>
-                                        <Field type='number' className='form-control' name='year'/>
+                                        <Field as="select" name="year" className="form-control">
+                                             <option value=""></option>
+                                             {generateYears().map(year => (
+                                                  <option key={year} value={year}>{year}</option>
+                                             ))}
+                                        </Field>
                                    </fieldset>
                                    <ErrorMessage 
                                         name="year"
