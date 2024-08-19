@@ -3,7 +3,7 @@ const getPostUrl = (posterPath) =>{
      return `https://media.themoviedb.org/t/p/w220_and_h330_face/${posterPath}`
 }
 
-const SearchCard = ({poster_path, title, overview, release_date}) =>{
+const SearchCard = ({id, poster_path, title, overview, release_date, onDetailsClick, onAddClick}) =>{
 
      return(
           <div class="card p-2 m-2">
@@ -12,9 +12,13 @@ const SearchCard = ({poster_path, title, overview, release_date}) =>{
                     <h5 class="card-title">{title}</h5>
                     <p class="card-text">{overview}</p>
                </div>
-                    <ul class="list-group list-group-flush">
-                         <li class="list-group-item">{release_date}</li>
-                    </ul>
+               <ul class="list-group list-group-flush">
+                    <li class="list-group-item">{release_date}</li>
+               </ul>
+               <div className="card-body">
+                <button className="btn btn-outline-primary m-1" onClick={() => onDetailsClick(id)}>Details</button>
+                <button className="btn btn-outline-success m-1" onClick={() => onAddClick(id)}>Add</button>
+            </div>
           </div>
      )
 }
