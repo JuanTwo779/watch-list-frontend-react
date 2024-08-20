@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { retrieveMovieSearchApi } from "../API/TmdbApiService"
+import { retrieveMovieCredits, retrieveMovieSearchApi } from "../API/TmdbApiService"
 
 import ISO6391 from 'iso-639-1';
 import SearchCard from "./SearchCard";
@@ -47,6 +47,34 @@ export default function SearchComponent(){
           throw e
         } 
       }
+     }
+
+     const handleDetailsClick = async (movieId) => {
+        //get movie details (TmdbAPIService)
+     }
+
+     const handleAddClick = async (movieId) => {
+        //get movie credits for director (TmdbAPIService)
+        try{
+          const movieCredits = await retrieveMovieCredits(movieId);
+          console.log(movieCredits)
+          // const director = movieCredits.crew.find(crewMember => crewMember.job === 'Writer')?.name || 'Unknown';
+        } catch  (e){
+          console.error('Error fetching movie details: ', e)
+        }
+
+        //create new movie
+
+        // const movie = {
+        //   id: id,
+        //   username: username,
+        //   title: values.title,
+        //   year: values.year,
+        //   director: director,
+        //   country: values.country,
+        //   rating: values.rating,
+        //   watched: values.watched
+        // }
      }
      
      return (
@@ -106,12 +134,10 @@ export default function SearchComponent(){
           {/* Search button */}
           <button className="btn btn-primary" onClick={handleSearch}>Search</button>
 
-
-      
           {/* Search result cards */}
           <div className="search-results rounded">
               {movies.map((movie, id) => {
-                  return <SearchCard key={id} {...movie} />
+                  return <SearchCard key={id} {...movie} onAddClick={handleAddClick(id)} onDetailsClick={handleAddClick}/>
               })}
           </div>
 
