@@ -22,7 +22,10 @@ export const retrieveMovieSearchApi = async (query, language, primaryReleaseYear
 
 export const retrieveMovieCredits = async(movieId) => {
     try{
-        const response = await apiClient.get('/movies/credits', {movieId});
+        // const params={}
+        // if(movieId) params.movieId = movieId;
+        // const response = await apiClient.get('/movies/credits', {params});
+        const response = await apiClient.get(`/movies/credits?movieId=${movieId}`);
         return response.data;
     } catch (error){
         console.error("Error retrieving movie credits:", error);
