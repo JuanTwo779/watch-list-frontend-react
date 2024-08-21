@@ -23,6 +23,9 @@ export default function SearchComponent(){
     const authContext = useAuth()
     const username = authContext.username
 
+    const countries = require("i18n-iso-countries");
+    countries.registerLocale(require("i18n-iso-countries/langs/en.json"));
+
     function scrollToTop() {
       window.scrollTo({
           top: 0,
@@ -72,8 +75,8 @@ export default function SearchComponent(){
           const movieDetails = await retrieveMovieDetails(movieId)
           console.log(movieDetails)
           const title = movieDetails.title
-          const year = movieDetails.release_date //convert to year
-          const country = movieDetails.origin_country.toString() //convert to country names
+          const year = parseInt((movieDetails.release_date).split("-")[0],10); 
+          const country = (movieDetails.origin_country).map(code => countries.getName(code, "en")).toString()
   
           //create new movie
           const movie = {
