@@ -5,6 +5,8 @@ import ISO6391 from 'iso-639-1';
 import SearchCard from "./SearchCard";
 
 import './SearchComponent.css';
+import { useAuth } from "../Security/AuthContext";
+import { createMovieApi } from "../API/MovieApiService";
 
 export default function SearchComponent(){
 
@@ -17,6 +19,9 @@ export default function SearchComponent(){
     const [year, setYear] = useState('');
 
     const [movies, setMovies] = useState([]);
+
+    const authContext = useAuth()
+    const username = authContext.username
 
     function scrollToTop() {
       window.scrollTo({
@@ -53,28 +58,42 @@ export default function SearchComponent(){
         //get movie details (TmdbAPIService)
      }
 
-     const handleAddClick = async (movieId) => {
-        //get movie credits for director (TmdbAPIService)
-        try{
+    const handleAddClick = async (movieId) => {
+      try{
+          //get movie credits for director 
           const movieCredits = await retrieveMovieCredits(movieId);
           console.log(movieCredits)
-          // const director = movieCredits.crew.find(crewMember => crewMember.job === 'Writer')?.name || 'Unknown';
+          const director = movieCredits.crew.find(crewMember => crewMember.job === 'Director')?.name || 
+                            movieCredits.crew.find(crewMember => crewMember.job === 'Writer')?.name || 
+                            'Unknown';
+          console.log(director)
+
+          //get movie details (title, year, country)
+
+  
+          //create new movie
+          const movie = {
+            id: -1,
+            username: username,
+            title: "",
+            year: "",
+            director: director,
+            country: "",
+            rating: 0,
+            watched: false
+          }
+          console.log(movie)
+
+          // createMovieApi(username, movie)
+          // .then(response => {
+          //   //display a success message of sorts (notifyJS)
+          // })
+          // .catch(error => console.log(error))
+
         } catch  (e){
           console.error('Error fetching movie details: ', e)
         }
 
-        //create new movie
-
-        // const movie = {
-        //   id: id,
-        //   username: username,
-        //   title: values.title,
-        //   year: values.year,
-        //   director: director,
-        //   country: values.country,
-        //   rating: values.rating,
-        //   watched: values.watched
-        // }
      }
      
      return (
@@ -137,7 +156,7 @@ export default function SearchComponent(){
           {/* Search result cards */}
           <div className="search-results rounded">
               {movies.map((movie, id) => {
-                  return <SearchCard key={id} {...movie} onAddClick={handleAddClick(id)} onDetailsClick={handleAddClick}/>
+                  return <SearchCard key={id} {...movie} onAddClick={() => handleAddClick(movie.id)} />
               })}
           </div>
 
