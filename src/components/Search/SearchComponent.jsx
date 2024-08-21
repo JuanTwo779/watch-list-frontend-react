@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { retrieveMovieCredits, retrieveMovieSearchApi } from "../API/TmdbApiService"
+import { retrieveMovieCredits, retrieveMovieDetails, retrieveMovieSearchApi } from "../API/TmdbApiService"
 
 import ISO6391 from 'iso-639-1';
 import SearchCard from "./SearchCard";
@@ -66,19 +66,23 @@ export default function SearchComponent(){
           const director = movieCredits.crew.find(crewMember => crewMember.job === 'Director')?.name || 
                             movieCredits.crew.find(crewMember => crewMember.job === 'Writer')?.name || 
                             'Unknown';
-          console.log(director)
+          // console.log(director)
 
           //get movie details (title, year, country)
-
+          const movieDetails = await retrieveMovieDetails(movieId)
+          console.log(movieDetails)
+          const title = movieDetails.title
+          const year = movieDetails.release_date //convert to year
+          const country = movieDetails.origin_country.toString() //convert to country names
   
           //create new movie
           const movie = {
             id: -1,
             username: username,
-            title: "",
-            year: "",
+            title: title,
+            year: year,
             director: director,
-            country: "",
+            country: country,
             rating: 0,
             watched: false
           }

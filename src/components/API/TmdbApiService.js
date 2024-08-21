@@ -32,3 +32,13 @@ export const retrieveMovieCredits = async(movieId) => {
         throw error;
     }
 };
+
+export const retrieveMovieDetails = async(movieId) => {
+    try{
+        const respone = await apiClient.get(`/movies/details?movieId=${movieId}`);
+        return respone.data;
+    } catch (error){
+        console.error("Error retrieving movie details:", error);
+        throw error;
+    }
+}
