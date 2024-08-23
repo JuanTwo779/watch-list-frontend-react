@@ -65,7 +65,7 @@ export default function SearchComponent(){
       try{
           //get movie credits for director 
           const movieCredits = await retrieveMovieCredits(movieId);
-          console.log(movieCredits)
+          // console.log(movieCredits)
           const director = movieCredits.crew.find(crewMember => crewMember.job === 'Director')?.name || 
                             movieCredits.crew.find(crewMember => crewMember.job === 'Writer')?.name || 
                             'Unknown';
@@ -73,7 +73,7 @@ export default function SearchComponent(){
 
           //get movie details (title, year, country)
           const movieDetails = await retrieveMovieDetails(movieId)
-          console.log(movieDetails)
+          // console.log(movieDetails)
           const title = movieDetails.title
           const year = parseInt((movieDetails.release_date).split("-")[0],10); 
           const country = (movieDetails.origin_country).map(code => countries.getName(code, "en")).toString()
@@ -89,16 +89,16 @@ export default function SearchComponent(){
             rating: 0,
             watched: false
           }
-          console.log(movie)
+          // console.log(movie)
 
-          // createMovieApi(username, movie)
-          // .then(response => {
-          //   //display a success message of sorts (notifyJS)
-          // })
-          // .catch(error => console.log(error))
+          createMovieApi(username, movie)
+          .then(response => {
+            console.log(response)
+          })
+          .catch(error => console.log(error))
 
         } catch  (e){
-          console.error('Error fetching movie details: ', e)
+          console.error('Error adding movie to list: ', e)
         }
 
      }
