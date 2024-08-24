@@ -71,7 +71,7 @@ export default function ListMoviesComponent(){
 
      function handleRowClick (id) {
           setMessage(null)
-          if (selectedId == id){
+          if (selectedId === id){
                setSelectedId(null)
           } else {
                setSelectedId(id)

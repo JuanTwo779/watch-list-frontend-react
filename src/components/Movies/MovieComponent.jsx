@@ -25,7 +25,7 @@ export default function MovieComponent() {
      )
 
      function retrieveMovie() {
-          if(id != -1) {
+          if(id !== -1) {
                retrieveMovieApi(username, id)
                .then(response => {
                     console.log(response)
@@ -53,7 +53,7 @@ export default function MovieComponent() {
                watched: values.watched
           }
 
-          if(id == -1) {
+          if(id === -1) {
                createMovieApi(username, movie)
                .then(response => {
                     navigate('/movies')

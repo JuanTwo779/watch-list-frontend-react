@@ -23,7 +23,7 @@ export default function AwardComponent() {
      )
 
      function retrieveAward() {
-          if(awardId != -1) {
+          if(awardId !== -1) {
                retrieveAwardForMovieApi(username, id, awardId)
                .then(response => {
                     // console.log(response.data)
@@ -43,7 +43,7 @@ export default function AwardComponent() {
                description: values.description
           }
 
-          if(awardId == -1){
+          if(awardId === -1){
                createAwardForMovieApi(username, id, award)
                .then(response => {
                     navigate(pathBack)

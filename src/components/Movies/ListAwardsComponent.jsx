@@ -28,7 +28,7 @@ export default function ListAwardsComponent(){
 
      function handleRowClick (id) {
           setMessage(null)
-          if(selectedAwardId == id){
+          if(selectedAwardId === id){
                setSelectedAwardId(null)
           } else {
                setSelectedAwardId(id)

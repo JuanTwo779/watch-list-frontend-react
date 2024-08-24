@@ -27,7 +27,7 @@ export default function AuthProvider({ children }) {
                     await executeJwtAuthenticationService(username, password)
 
                //set the states     
-               if(response.status == 200){
+               if(response.status === 200){
 
                     const jwtToken = 'Bearer ' + response.data.token
 
