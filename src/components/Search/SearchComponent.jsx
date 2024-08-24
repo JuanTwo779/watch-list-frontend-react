@@ -8,9 +8,12 @@ import './SearchComponent.css';
 import { useAuth } from "../Security/AuthContext";
 import { createMovieApi } from "../API/MovieApiService";
 
+import { Bounce, toast, ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+
 export default function SearchComponent(){
 
-    const[query, setQuery] = useState('')
+    const [query, setQuery] = useState('')
     const [prevQuery, setPrevQuery] = useState('');
     const [language, setLanguage] = useState('');
     const [primaryReleaseYear, setPrimaryReleaseYear] = useState('');
@@ -38,6 +41,30 @@ export default function SearchComponent(){
         handleSearch();
       }
     }, [page])
+
+    const successToast = (note) => toast.success(note, {
+      position: "top-center",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: false,
+      pauseOnHover: false,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+      transition: Bounce
+    })
+
+    const errorToast = (note) => toast.error(note, {
+      position: "top-center",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: false,
+      pauseOnHover: false,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+      transition: Bounce
+    })
 
      const handleSearch = async () => {
       if(!query.trim()) {
@@ -93,9 +120,13 @@ export default function SearchComponent(){
 
           createMovieApi(username, movie)
           .then(response => {
-            console.log(response)
+            // console.log(response)
+            successToast("'"+movie.title+"'" + " added to your watchlist")
           })
-          .catch(error => console.log(error))
+          .catch(error => {
+            // console.log(error)
+            errorToast("Failed to add " + "'"+movie.title+"'" + " to your watchlist")
+          })
 
         } catch  (e){
           console.error('Error adding movie to list: ', e)
@@ -105,7 +136,9 @@ export default function SearchComponent(){
      
      return (
         <div>
+          <ToastContainer/>
           <h1>Movie Search</h1>
+
           {/* Filters */}
           <div className="filter-container">
               <div className="filter">
