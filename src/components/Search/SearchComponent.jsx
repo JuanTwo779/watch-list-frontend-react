@@ -121,11 +121,11 @@ export default function SearchComponent(){
           createMovieApi(username, movie)
           .then(response => {
             // console.log(response)
-            successToast("'"+movie.title+"'" + " added to your watchlist")
+            successToast(`'${movie.title}' added to your watchlist`);
           })
           .catch(error => {
             // console.log(error)
-            errorToast("Failed to add " + "'"+movie.title+"'" + " to your watchlist")
+            errorToast(`Failed to add '${movie.title}' to your watchlist`);
           })
 
         } catch  (e){
