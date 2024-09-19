@@ -31,23 +31,59 @@ export default function LoginComponent(){
      }
 
      return (
-          <div className="loginComponent">
-               <h1>Login here</h1>
-               {showErrorMessage && <div className='successMessage'>Authenticated Failed. Please check your credentials.</div>}
+<div className="container mt-5">
+    <div className="row justify-content-center">
+            <div className="card w-50">
+                <div className="card-body">
+                    <h1 className="text-center mb-4">Login Here</h1>
+                    
+                    {showErrorMessage && (
+                        <div className="alert alert-danger" role="alert">
+                            Authentication Failed. Please check your credentials.
+                        </div>
+                    )}
 
-               <div className="loginForm">
-                    <div>
-                         <label>Username: </label>
-                         <input type="text" name="username" value={username} onChange={handleUsernameChange}/>
-                    </div>
-                    <div>
-                         <label>Password: </label>
-                         <input type="password" name="password" value={password} onChange={handlePasswordChange}/>
-                    </div>
-                    <div>
-                         <button type="button" name="login" onClick={handleSubmit}>login</button>
-                    </div>
-               </div>
-          </div>
+                    <form className="loginForm">
+                        <div className="mb-3">
+                            <label htmlFor="username" className="form-label text-secondary">Username</label>
+                            <div className="col-md-4"></div>  
+                            <input
+                                type="text"
+                                id="username"
+                                name="username"
+                                className="form-control m-auto"
+                                value={username}
+                                onChange={handleUsernameChange}
+                                style={{ textAlign: 'center', maxWidth: '400px' }}
+                            />
+                        </div>
+                        <div className="mb-3">
+                            <label htmlFor="password" className="form-label text-secondary">Password</label>
+                            <input
+                                type="password"
+                                id="password"
+                                name="password"
+                                className="form-control m-auto"
+                                value={password}
+                                onChange={handlePasswordChange}
+                                style={{ textAlign: 'center', maxWidth: '400px' }}
+                            />
+                        </div>
+                        <div className="d-grid">
+                            <button
+                                type="button"
+                                className="btn btn-primary m-auto rounded w-50"
+                                name="login"
+                                onClick={handleSubmit}
+                            >
+                                Login
+                            </button>
+                        </div>
+                    </form>
+                </div>
+        </div>
+    </div>
+</div>
+
      )
 }
