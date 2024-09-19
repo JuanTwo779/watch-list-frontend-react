@@ -144,7 +144,7 @@ export default function SearchComponent(){
               <div className="filter">
                   <p className="filter-title">Keywords</p>
                   <input
-                      className="filter-input"
+                      className="filter-input rounded"
                       type="text"
                       value={query}
                       onChange={
@@ -156,7 +156,7 @@ export default function SearchComponent(){
               <div className="filter language-filter">
                   <p className="filter-title ">Language</p>
                   <select
-                    className="filter-input"
+                    className="filter-input rounded"
                     value={language}
                     onChange={(e) => setLanguage(e.target.value)}
                   >
@@ -171,7 +171,7 @@ export default function SearchComponent(){
               <div className="filter release-filter">
                   <p className="filter-title ">Release Year</p>
                   <input
-                      className="filter-input"
+                      className="filter-input rounded"
                       type="text"
                       value={primaryReleaseYear}
                       onChange={(e) => setPrimaryReleaseYear(e.target.value)}
@@ -181,7 +181,7 @@ export default function SearchComponent(){
               <div className="filter year-filter">
                   <p className="filter-title ">Year</p>
                   <input
-                      className="filter-input"
+                      className="filter-input rounded"
                       type="text"
                       value={year}
                       onChange={(e) => setYear(e.target.value)}
@@ -203,6 +203,7 @@ export default function SearchComponent(){
           {/* Pagination */}
           <div className="pagination">
             <button 
+            className="rounded"
               disabled={page === 1} 
               onClick={() => {
                 if (query) {
@@ -213,9 +214,10 @@ export default function SearchComponent(){
                 Previous
             </button>
 
-            <span>{page}</span>
+            <span className="m-3">{page}</span>
 
             <button 
+              className="rounded"
               disabled={movies.length < 20}
               onClick={() => {
                 if (query) {
