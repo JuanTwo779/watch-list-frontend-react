@@ -20,9 +20,9 @@ export default function MovieComponent() {
 
      const navigate = useNavigate()
 
-     useEffect(
-          () => retrieveMovie,[id]
-     )
+     useEffect(() => {
+          retrieveMovie();
+     }, [id])
 
      function retrieveMovie() {
           if(id !== -1) {
