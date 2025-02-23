@@ -1,22 +1,12 @@
-Overview
-- front end of watch list application
-- hosted using Amazon S3 bucket
+# Movie Watchlist Frontend
 
-Installed dependencies
-- axios
-- boostrap + react-bootstrap
-- formik
-- moment
-- react-dom
-- react-router-dom
+## Overview
+This is the frontend of the Movie Watchlist application, allowing users to keep track of movies they watch. The application enables users to search for movies using the TMDB database and add them to their watchlist. It also features JWT authentication for secure access. The frontend is built with ReactJS and is hosted using Azure Web App.
 
-Bucket policy (Allow access to all files in bucket)
-"Statement": [
-     {
-          "Sid": __,
-          "Principal": "*",
-          "Effect": "Allow",
-          "Action": "s3:GetObject",
-          "Resource": arn:aws:s3:::BUCKET-NAME/*"
-     }
-]
+## Installed dependencies
+- `axios` - For making HTTP requests.
+- `bootstrap + react-bootstrap` - For responsive UI components and styling.
+- `formik` - For form management and validation.
+- `moment` - For handling date/time formatting.
+- `react-dom` - For working with the React virtual DOM.
+- `react-router-dom` - For client-side routing and navigation.
